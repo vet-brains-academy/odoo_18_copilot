@@ -1,0 +1,228 @@
+[33mcommit 728ff504fa98bcf2f7fbc99214f80df959a43976[m[33m ([m[1;36mHEAD -> [m[1;32mmy-feature-branch[m[33m, [m[1;33mtag: v1.0[m[33m)[m
+Author: sabry youssef <vendorah2@gmail.com>
+Date:   Sat Nov 9 06:15:43 2024 +0200
+
+    Initial commit of hr_zk_attendance_18 module (working with machine IP, no API)
+
+[33mcommit dc486c63e292b854f42d0548a671c19d39c023da[m[33m ([m[1;31morigin/my-feature-branch[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31morigin/18.0[m[33m, [m[1;32m18.0[m[33m)[m
+Author: William Braeckman <wbr@odoo.com>
+Date:   Fri Nov 8 09:26:16 2024 +0100
+
+    [FIX] event_booth_sale: fix test with community
+    
+    Fixes a test to work without enterprise installed.
+    
+    Runbot Error 105489
+    
+    closes odoo/odoo#186729
+    
+    Signed-off-by: William André (wan) <wan@odoo.com>
+
+[33mcommit dc57fdbe6f15db338dff86dbe894f3a2e010d6ca[m
+Author: Agustin Castro Bugallo <agcb@odoo.com>
+Date:   Thu Oct 10 09:54:57 2024 +0000
+
+    [FIX] account: Allow multiple records while renaming taxes
+    
+    Since the unique name constraint only works for the active language,
+    it's possible to have more than one tax with the same name in another language.
+    
+    If that's the case, a `ValueError: Expected singleton` error will occur while
+    retrieving the fields in `unique_tax_name_key`.
+    
+    Found in upg-2077316.
+    
+    closes odoo/odoo#186672
+    
+    X-original-commit: b79bcb0574354a17a2aa64e2fe8d05da95535257
+    Signed-off-by: Josse Colpaert (jco) <jco@odoo.com>
+    Signed-off-by: Agustín Castro Bugallo (agcb) <agcb@odoo.com>
+
+[33mcommit aa9f0f827ce4f6acea1386ff1ee6a960679d05fc[m
+Author: odoo <angv@odoo.com>
+Date:   Thu Oct 24 08:07:51 2024 +0000
+
+    [FIX] mrp: fix undeterministic timing error on test_order
+    
+    test_duration_expected_when_done was undeterministically failing,
+    if the test ran at specific times, the difference in minutes between
+    button_start and button_finish functions was rounded incorrectly.
+    having time frozen should solve this behavior.
+    
+    closes odoo/odoo#186699
+    
+    X-original-commit: f75b06939e9fd48a84ad2d9bf1b36b6e33236e30
+    Signed-off-by: William Henrotin (whe) <whe@odoo.com>
+
+[33mcommit df847e88d82250ae976cd52628e20b17bfd7eaab[m
+Author: Romeo Fragomeli <rfr@odoo.com>
+Date:   Fri Nov 8 09:58:21 2024 +0100
+
+    [FIX] base_import: use correct value and unit for batch size
+    
+    This commit fixes the parameters send to the BinaryFileManager.
+    There was a typo `maxBatchSize` and not `maxSizePerBatch` also
+    has the unit on the web interface is in mega we should multiply the unit
+    by 1024 ^ 2 to have the correct value.
+    
+    closes odoo/odoo#186736
+    
+    Signed-off-by: Pierre Paridans (app) <app@odoo.com>
+
+[33mcommit cd8623a6048bcc8e13781fd8067f92821329b623[m
+Author: David Monnom (moda) <moda@odoo.com>
+Date:   Thu Nov 7 10:12:23 2024 +0000
+
+    [FIX] point_of_sale: fix order reference in qr code payment
+    
+    To be compliant with belgium we need to fix the reference of the order
+    in the qr code payment.
+    
+    If we have 12 digits at the end of the reference, it considers it as a
+    structured reference but isn't. So we also add the tracking number at
+    the end of the reference.
+    
+    opw-4285530
+    
+    closes odoo/odoo#186703
+    
+    X-original-commit: 405cafa7f6367fd295e28ab967ced0c700dc505f
+    Signed-off-by: Adrien Guilliams (adgu) <adgu@odoo.com>
+    Signed-off-by: David Monnom (moda) <moda@odoo.com>
+
+[33mcommit b9ad6f389642d45156a28ce8821430846f371d34[m
+Author: niyasraphy <niyasraphyk@gmail.com>
+Date:   Thu Nov 7 12:05:47 2024 +0000
+
+    [FIX] cli: obfuscate partner complete name
+    
+    before this commit, for obfuscating data in the
+    res.partner model, the display_name field is used,
+    which is non stored field and thus in the log,
+    an error/warning is shown as follows while
+    running obfuscate command
+    
+    odoo.cli.obfuscate: Invalid fields: res_partner.display_name
+    
+    the invalid warning is raised as the field is not
+    a stored field and thus removing it from the
+    obfuscation
+    
+    even though, the res.partner name field is obfuscated,
+    the same data is remaining in the complete_name
+    field, so adding this field to obfuscating field list
+    
+    after this commit, the log will not show the
+    invalid field warning and complete name also
+    will be obfuscated
+    
+    closes odoo/odoo#186688
+    
+    X-original-commit: 5976db2e6dad7311b3b96ce14b7f2789e18fe94e
+    Signed-off-by: Rémy Voet (ryv) <ryv@odoo.com>
+
+[33mcommit 172cd6a5faf43184ecf2e181893ad014b7b26e44[m
+Author: Pierre Pulinckx (PIPU) <pipu@odoo.com>
+Date:   Fri Nov 8 09:19:27 2024 +0100
+
+    [FIX] mail: discuss_channel_tour tour
+    
+    In this commit, we fix the sequence and the url of discuss_channel_tour
+    tour with the aim to start in last position after all the functional and
+    with the aim to see the baball  on the app.
+    
+    task~4309858
+    
+    closes odoo/odoo#186248
+    
+    Signed-off-by: Julien Mougenot (jum) <jum@odoo.com>
+
+[33mcommit 2ece44fcfab8bbeabbbef05ee7209c871634405f[m
+Author: Djamel Touati <otd@odoo.com>
+Date:   Mon Oct 28 15:29:33 2024 +0000
+
+    [FIX] repair: clear the lot when changing the product
+    
+    **Steps to reproduce the bug:**
+    - Create two storable products, “P1” and “P2”.
+    - Set “P1” to be tracked by Serial Number
+    - Update P1 with SN1.
+    - Create a repair order:
+       - Set P1 with SN1.
+       - Save.
+    - Edit and update the product to P2.
+    - Save.
+    - Print the order.
+    
+    **Problem:**
+    The “lot_id” is not cleared and appears in the report because the
+    “lot_id” field becomes invisible and read-only under the same condition.
+    Since it is read-only and not force-saved, the value of “lot_id” is not
+    considered in the write of the repair order, even though the `onchange`
+    sets the “lot_id” field to False:
+    
+    https://github.com/odoo/odoo/blob/16.0/addons/repair/models/repair.py#L208-L212
+    
+    **opw-4281176**
+    
+    closes odoo/odoo#186667
+    
+    X-original-commit: 7c20da0ddc0ff9067e98eb1cbd36275732732f3f
+    Signed-off-by: Djamel Touati (otd) <otd@odoo.com>
+    Signed-off-by: Quentin Wolfs (quwo) <quwo@odoo.com>
+
+[33mcommit 2d9cdf9963c2321ebbdd7f97da75380d061146d2[m
+Author: Chong Wang (cwg) <cwg@odoo.com>
+Date:   Thu Nov 7 16:30:55 2024 +0100
+
+    [FIX] hr_expense: typofixing
+    
+    closes odoo/odoo#186734
+    
+    Signed-off-by: Xavier Dollé (xdo) <xdo@odoo.com>
+
+[33mcommit 951c487beec24e14df58fc679702826f87b1a37b[m
+Author: Dossogne Bertrand <bedo@odoo.com>
+Date:   Thu Nov 7 10:28:43 2024 +0100
+
+    [IMP] hr_holidays: clarify constraint on negative balance
+    
+    Before this commit, the error message that the user receives
+    once triggering the constraint on negative balances values was:
+    "The negative amount must be greater than 0."
+    which was a bit confusing by having side to side "negative" and "greater than 0"
+    
+    This commit rephrases that error message.
+    
+    closes odoo/odoo#186561
+    
+    Signed-off-by: Jurgen Gjini (jugj) <jugj@odoo.com>
+
+[33mcommit a53492fbdabb185447a02e2e6d38a52b930068e5[m
+Author: Maryam Kia <maki@odoo.com>
+Date:   Thu Nov 7 16:18:55 2024 +0000
+
+    [FIX] mail_bot: fix html_escape in random choices
+    
+    Wrong closed parentheses in html_escape causes one of the OdooBot random
+    responses to be rendered incorrectly.
+    
+    closes odoo/odoo#186716
+    
+    X-original-commit: 71a467e2937b652248e9760327dd5a6c3c42360e
+    Signed-off-by: Sébastien Theys (seb) <seb@odoo.com>
+    Signed-off-by: Maryam Kia (maki) <maki@odoo.com>
+
+[33mcommit 19e7c30279d9e2bb1869bae08844b02feaaf45b6[m
+Author: Achraf (abz) <abz@odoo.com>
+Date:   Tue Nov 5 14:09:52 2024 +0000
+
+    [FIX] base: Prevent quick creation of `ir_model_fields`
+    
+    The problem can be reproduced in two ways
+    - by finding a view that integrates a many2one on `ir.model.fields` used
+    without no_create
+    - manually add the field via studio on any view.
+    
+    I found a view with the problem: `marketing_campaign_view_form` which
+    uses the field `unique_field_
