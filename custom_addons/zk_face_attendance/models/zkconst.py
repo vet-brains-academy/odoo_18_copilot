@@ -1,0 +1,54 @@
+# ZK Command Codes
+CMD_CONNECT = 1000
+CMD_EXIT = 1001
+CMD_ENABLEDEVICE = 1002
+CMD_DISABLEDEVICE = 1003
+CMD_RESTART = 1004
+CMD_POWEROFF = 1005
+CMD_ACK_OK = 2000
+CMD_ACK_ERROR = 2001
+CMD_ACK_DATA = 2002
+CMD_PREPARE_DATA = 1500
+CMD_DATA = 1501
+CMD_FREE_DATA = 1502
+
+# Data Size Constants
+MAX_CHUNK = 16 * 1024
+DEF_TIMEOUT = 10
+DEF_PORT = 4370
+
+# Connection States
+LEVEL_USER = 0
+LEVEL_ADMIN = 1
+
+# Attendance States
+ATT_STATE_FINGERPRINT = 1
+ATT_STATE_PASSWORD = 2
+ATT_STATE_CARD = 3
+ATT_STATE_FACE = 15
+
+# Device Responses
+EF_ATTLOG = 1
+EF_FINGER = 2
+EF_FACE = 4
+EF_OPERLOG = 8
+
+# Reply Codes
+ACK_OK = 2000
+ACK_ERROR = 2001
+ACK_DATA = 2002
+
+# Packet Format
+START_TAG = 0xAA
+START_TAG2 = 0x55
+SHORT_ZERO = pack('BBBB', 0x00, 0x00, 0x00, 0x00)
+
+# Device States
+DISABLED = 0
+ENABLED = 1
+
+# Face Parameters
+FACE_FP_MVER = 0x01  # Face template version
+FACE_NR_LEVEL = 0x10  # Face detect number level
+FACE_DETECT_LEVEL = 0x20  # Face detect level
+FACE_MASK_LEVEL = 0x30  # Face mask level 

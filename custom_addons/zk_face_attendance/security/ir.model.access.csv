@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_zk_device_user,zk.device.user,model_zk_device,group_zk_user,1,0,0,0
+access_zk_device_manager,zk.device.manager,model_zk_device,group_zk_manager,1,1,1,1
+access_zk_attendance_user,zk.attendance.user,model_zk_attendance,group_zk_user,1,1,1,0
+access_zk_attendance_manager,zk.attendance.manager,model_zk_attendance,group_zk_manager,1,1,1,1 
